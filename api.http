@@ -1,0 +1,23 @@
+GET http://localhost:3000/api/usuarios
+
+###
+POST http://localhost:3000/api/usuarios
+Content-Type: application/json
+
+{
+    "nome":"user1",
+    "email":"user1@mail.com",
+    "senha":"12345"
+}
+
+###
+GET http://localhost:3000/api/usuarios/search?nome=user1
+
+###
+POST http://localhost:3000/api/usuarios/login
+Content-Type: application/json
+
+{
+    "nome":"user1",
+    "senha":"12345"
+}
