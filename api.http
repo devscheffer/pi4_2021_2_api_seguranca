@@ -5,6 +5,16 @@ POST http://localhost:3000/api/usuarios
 Content-Type: application/json
 
 {
+    "nome":"user2",
+    "email":"user2@mail.com",
+    "senha":"12345"
+}
+
+###
+PUT http://localhost:3000/api/usuarios/614d090b59da2084d0fa0b85
+Content-Type: application/json
+
+{
     "nome":"user1",
     "email":"user1@mail.com",
     "senha":"12345"
@@ -21,3 +31,7 @@ Content-Type: application/json
     "nome":"user1",
     "senha":"12345"
 }
+
+###
+GET http://localhost:3000/api/produtos
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNGQwOTBiNTlkYTIwODRkMGZhMGI4NSIsImlhdCI6MTYzMzA0MjMzMywiZXhwIjoxNjMzMDQ1OTMzfQ.iYFLkPJKWStCl369SPuz6ZYuIqzQtUhyZurA_XZ3fy0

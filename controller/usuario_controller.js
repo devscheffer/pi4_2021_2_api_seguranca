@@ -6,8 +6,12 @@ exports.listar = (req, res) => {
   Usuario.find({}, (err, usuarios) => {
     if(err) {
       res.status(500).send(err);
-    }
-    res.json(usuarios);
+    }    
+    res.json(
+      usuarios.map((usuario) => { 
+        return({id:usuario.id, nome: usuario.nome, email:usuario.email});
+      })
+    );
   })
 }
 
@@ -117,5 +121,24 @@ exports.inserir = (req, res) => {
       else {
         res.status(401).json({erro: "Usuario ou senha invalidos"});
       }
+  }
+
+  exports.validaToken = (req, res, next) => {
+    const token = req.get('x-auth-token'); //vem do header
+    if(!token) {
+      res.status(401).json({erro:"Token Invalido"});        
+    }
+    else {
+      jwt.verify(token, 'Sen@crs', (err, payload) =>{
+        if(err) {
+          res.status(401).json({erro:"Token Invalido"});
+        }        
+        else {
+          console.log("Payload: "+JSON.stringify(payload));
+          next();
+        }
+      })
+    }
+
   }
 

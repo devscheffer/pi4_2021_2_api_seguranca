@@ -7,6 +7,9 @@ const port = 3000
 const rotaProduto = require('./rotas/produto_rotas');
 const rotaUsuario = require('./rotas/usuario_rotas');
 
+//Importar o usuario_controller para verificar o Token
+const usuarioController = require('./controller/usuario_controller');
+
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
@@ -25,7 +28,7 @@ app.use((req, res, next) => {
 })
 
 //Uso das rotas
-app.use('/api/produtos', rotaProduto);
+app.use('/api/produtos', usuarioController.validaToken, rotaProduto);
 app.use('/api/usuarios', rotaUsuario);
 
 
